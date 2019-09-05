@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FreshMvvm;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XrnCourse.LocalFiles.ViewModels;
 
 namespace XrnCourse.LocalFiles
 {
@@ -10,7 +12,7 @@ namespace XrnCourse.LocalFiles
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainViewModel>());
         }
 
         protected override void OnStart()
