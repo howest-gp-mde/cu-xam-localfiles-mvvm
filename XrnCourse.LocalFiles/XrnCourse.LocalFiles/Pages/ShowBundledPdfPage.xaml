@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
+             mc:Ignorable="d"
+             x:Class="XrnCourse.LocalFiles.Pages.ShowBundledPdfPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Button Text="Load" Command="{Binding LoadFileCommand}"></Button>
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalOptions="Start">File Size:</Label>
+                    <Label HorizontalOptions="FillAndExpand" Text="{Binding PdfSize}" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <syncfusion:SfPdfViewer InputFileStream="{Binding PdfDocumentStream}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

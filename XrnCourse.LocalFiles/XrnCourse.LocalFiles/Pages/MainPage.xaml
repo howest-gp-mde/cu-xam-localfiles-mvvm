@@ -4,13 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XrnCourse.LocalFiles.Pages.MainPage">
-
+             x:Class="XrnCourse.LocalFiles.Pages.MainPage"
+             Title="Local file storage">
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Label>Embedded file</Label>
+        <Button Text="Read translations file" Command="{Binding OpenEmbeddedFilePageCommand}"></Button>
+        <Label>Bundled file</Label>
+        <Button Text="Show bundled PDF" Command="{Binding OpenBundledPdfPageCommand}"></Button>
+        <Label>Local files</Label>
+        <Button Text="Memento (System.IO)" Command="{Binding OpenMementoPageCommand}"></Button>
+        <Button Text="Coffee (Xamarin.Essentials)" Command="{Binding OpenCoffeePageCommand}"></Button>
     </StackLayout>
-
 </ContentPage>

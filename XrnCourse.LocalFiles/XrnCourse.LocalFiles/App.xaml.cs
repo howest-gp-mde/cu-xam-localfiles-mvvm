@@ -10,6 +10,9 @@ namespace XrnCourse.LocalFiles
     {
         public App()
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SynfusionLicenseKey);
+
             InitializeComponent();
 
             MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainViewModel>());

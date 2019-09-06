@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:conv="clr-namespace:XrnCourse.LocalFiles.Converters"
+             mc:Ignorable="d"
+             x:Class="XrnCourse.LocalFiles.Pages.CoffeeSettingsPage"
+             Title="Coffee settings (System.IO)">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:MilkAmountToStringConverter x:Key="MilkToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView HasUnevenRows="True">
+                <TableSection Title="Configure your coffee">
+                    <EntryCell Label="Name your coffee:" Text="{Binding CoffeeName}" />
+                    <SwitchCell Text="Sugar" On="{Binding HasSugar}"  />
+                    <ViewCell>
+                        <StackLayout Padding="15">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Amount of milk" />
+                                <Label Text="{Binding MilkAmount, Converter={StaticResource MilkToString}}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" />
+                            </StackLayout>
+                            <Slider Value="{Binding MilkAmount}" Maximum="4" Minimum="0" MinimumTrackColor="#aaaaaa"></Slider>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Padding="15">
+                            <Label Text="Make coffee every day at" />
+                            <TimePicker Time="{Binding BrewTime}" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableView>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Reset" Command="{Binding ResetToDefaultsCommand}"></Button>
+                <Button Text="Apply" Command="{Binding SaveSettingsCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    

@@ -6,6 +6,6 @@
              mc:Ignorable="d"
              x:Class="XrnCourse.LocalFiles.App">
     <Application.Resources>
-
+        <StyleSheet Source="/Styles/app.css"></StyleSheet>
     </Application.Resources>
 </Application>

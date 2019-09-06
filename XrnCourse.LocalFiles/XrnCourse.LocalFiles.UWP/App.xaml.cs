@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Syncfusion.SfPdfViewer.XForms.UWP;
+using Syncfusion.SfRangeSlider.XForms.UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -52,7 +55,15 @@ namespace XrnCourse.LocalFiles.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                //Add the assemblies
+                List<Assembly> assembliesToInclude = new List<Assembly>();
+
+                //Now, add all the assemblies that your app uses
+                assembliesToInclude.Add(typeof(SfPdfDocumentViewRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfRangeSliderRenderer).GetTypeInfo().Assembly);
+
+                //Replaces Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

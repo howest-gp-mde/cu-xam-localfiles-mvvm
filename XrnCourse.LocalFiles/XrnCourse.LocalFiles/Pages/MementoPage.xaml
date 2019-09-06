@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XrnCourse.LocalFiles.Pages.MementoPage"
+             Title="Storage with Xamarin.Essentials">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Save a memento" FontSize="Subtitle"></Label>
+            <Button Text="Clear contents" Command="{Binding ClearMementoCommand}"></Button>
+            <Editor HeightRequest="200" Text="{Binding MementoValue}" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Load" Command="{Binding LoadMementoCommand}"></Button>
+                <Button Text="Save" Command="{Binding SaveMementoCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

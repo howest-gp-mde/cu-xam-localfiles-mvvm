@@ -10,8 +10,41 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EmbeddedFiles\translations.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedFiles\translations.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FreshMvvm" Version="3.0.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="17.2.0.49" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\MementoPage.xaml.cs">
+      <DependentUpon>MementoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\CoffeeSettingsPage.xaml.cs">
+      <DependentUpon>CoffeeSettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\EmbeddedFilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\CoffeeSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MementoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ShowBundledPdfPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
