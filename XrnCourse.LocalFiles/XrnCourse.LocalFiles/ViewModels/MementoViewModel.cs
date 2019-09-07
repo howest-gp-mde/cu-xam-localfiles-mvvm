@@ -1,6 +1,7 @@
 ﻿using FreshMvvm;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,11 +10,6 @@ namespace XrnCourse.LocalFiles.ViewModels
     
     public class MementoViewModel : FreshBasePageModel
     {
-
-        public MementoViewModel()
-        {
-        }
-
         private string mementoValue;
 
         public string MementoValue
@@ -34,13 +30,18 @@ namespace XrnCourse.LocalFiles.ViewModels
 
         public ICommand LoadMementoCommand => new Command(
             () => {
-
+                string folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string fullPath = Path.Combine(folder, Constants.MementoFileName);
+                if(File.Exists(fullPath))
+                    MementoValue = File.ReadAllText(fullPath);
             }
         );
 
         public ICommand SaveMementoCommand => new Command(
             () => {
-
+                string folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string fullPath = Path.Combine(folder, Constants.MementoFileName);
+                File.WriteAllText(fullPath, MementoValue);
             }
         );
     }
