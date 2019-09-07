@@ -1,4 +1,6 @@
 ﻿using FreshMvvm;
+using System.IO;
+using System.Reflection;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -26,9 +28,16 @@ namespace XrnCourse.LocalFiles.ViewModels
 
         public ICommand LoadFileCommand => new Command(
             () => {
-
+                var assembly = typeof(EmbeddedFileViewModel).GetTypeInfo().Assembly;
+                Stream stream =
+                    assembly.GetManifestResourceStream("XrnCourse.LocalFiles.EmbeddedFiles.translations.txt");
+                using (var reader = new StreamReader(stream))
+                {
+                    FileContents = reader.ReadToEnd();
+                }
             }
         );
+
 
     }
 }
