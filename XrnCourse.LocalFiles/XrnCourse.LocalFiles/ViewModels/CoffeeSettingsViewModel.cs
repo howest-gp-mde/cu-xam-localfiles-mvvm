@@ -1,6 +1,10 @@
 ﻿using FreshMvvm;
+using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XrnCourse.LocalFiles.Domain;
 
@@ -59,7 +63,22 @@ namespace XrnCourse.LocalFiles.ViewModels
         {
             base.ViewIsAppearing(sender, e);
 
-            //todo: load settings from JSON
+            string fullPath = Path.Combine(FileSystem.AppDataDirectory, Constants.CoffeeSettingsFileName);
+            if (File.Exists(fullPath))
+            {
+                string jsonText = File.ReadAllText(fullPath);
+                try {
+                    var savedSettings = JsonConvert.DeserializeObject<CoffeeSettings>(jsonText);
+                    this.CoffeeName = savedSettings.CoffeeName;
+                    this.HasSugar = savedSettings.HasSugar;
+                    this.MilkAmount = savedSettings.MilkAmount;
+                    this.BrewTime = savedSettings.BrewTime;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"Error reading settings: {ex.Message}");
+                    //todo: log error!
+                }
+            }
         }
 
 
@@ -81,8 +100,16 @@ namespace XrnCourse.LocalFiles.ViewModels
                     MilkAmount = this.milkAmount,
                     BrewTime = this.BrewTime
                 };
+                
+                //object to json string
+                string jsonText = JsonConvert.SerializeObject(settings);
 
-                //todo: save to JSON file here!
+                //get appdata dir using Xamaring Essentials
+                string folder = FileSystem.AppDataDirectory;
+                
+                //standard,simple save operation
+                string fullPath = Path.Combine(folder, Constants.CoffeeSettingsFileName);
+                File.WriteAllText(fullPath, jsonText);
             }
         );
     }
